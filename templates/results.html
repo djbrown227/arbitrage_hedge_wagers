@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+</head>
+<body>
+    {% if arbitrage_wager is not none %}
+    <h2>Arbitrage Result</h2>
+    <p>To maximize arbitrage, wager ${{ arbitrage_wager }} on the second bet.</p>
+    <p>Payout 1: ${{ total_payout_initial }}</p>
+    <p>Payout 2: ${{ total_payout_second }}</p>
+    <p>Total Stake: ${{ total_stake }}</p>
+    <p>Profit: ${{ profit }}</p>
+    <p>Profit Percentage: {{ profit_percentage }}%</p>
+    {% endif %}
+    
+    {% if total_profit is not none %}
+    <hr>
+    <h2>Wagers Result</h2>
+    <p>Total Stake for all wagers: ${{ total_stake }}</p>
+    <p>Total Profit for all wagers: ${{ total_profit }}</p>
+    <p>Total Payout for all wagers: ${{ total_payout_combined }}</p>
+    {% endif %}
+</body>
+</html>

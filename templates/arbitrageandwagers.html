@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arbitrage and Wagers</title>
+</head>
+<body onload="addWagerFields()">
+    <h2>Arbitrage Calculation</h2>
+    <form action="/arbitrage" method="post">
+        <label for="initial_wager">Initial Wager Amount:</label>
+        <input type="text" id="initial_wager" name="initial_wager"><br><br>
+        <label for="initial_odds">Initial Odds:</label>
+        <input type="text" id="initial_odds" name="initial_odds"><br><br>
+        <label for="second_odds">Second Odds:</label>
+        <input type="text" id="second_odds" name="second_odds"><br><br>
+        <input type="submit" value="Calculate Arbitrage">
+    </form>
+
+    <hr>
+
+    <h2>Multiple Wagers</h2>
+    <form action="/wagers" method="post">
+        <label for="num_wagers">Number of Wagers:</label>
+        <input type="text" id="num_wagers" name="num_wagers"><br><br>
+        <div id="wagers"></div>
+        <button type="button" onclick="addWagerFields()">Add Wagers</button><br><br>
+        <input type="submit" value="Calculate Wagers">
+    </form>
+
+    <script>
+        function addWagerFields() {
+            var numWagers = document.getElementById('num_wagers').value;
+            var wagersDiv = document.getElementById('wagers');
+            wagersDiv.innerHTML = '';
+
+            for (var i = 0; i < numWagers; i++) {
+                var labelAmount = document.createElement('label');
+                labelAmount.textContent = 'Wager Amount ' + (i + 1) + ': ';
+                wagersDiv.appendChild(labelAmount);
+
+                var inputAmount = document.createElement('input');
+                inputAmount.setAttribute('type', 'text');
+                inputAmount.setAttribute('name', 'wager_amount_' + i);
+                inputAmount.setAttribute('value', '0'); // Set default value to 0
+                wagersDiv.appendChild(inputAmount);
+
+                wagersDiv.appendChild(document.createElement('br'));
+
+                var labelOdds = document.createElement('label');
+                labelOdds.textContent = 'Odds ' + (i + 1) + ': ';
+                wagersDiv.appendChild(labelOdds);
+
+                var inputOdds = document.createElement('input');
+                inputOdds.setAttribute('type', 'text');
+                inputOdds.setAttribute('name', 'odds_' + i);
+                inputOdds.setAttribute('value', '0'); // Set default value to 0
+                wagersDiv.appendChild(inputOdds);
+
+                wagersDiv.appendChild(document.createElement('br'));
+            }
+        }
+    </script>
+</body>
+</html>
